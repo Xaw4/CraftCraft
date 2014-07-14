@@ -1,0 +1,16 @@
+[
+{
+  "modid": "craftcraft",
+  "name": "CraftCraft",
+  "description": "Adds another Auto-Crafting method",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Xaw4"],
+  "credits": "The Forge and FML guys, for being awesome",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

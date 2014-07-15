@@ -1,6 +1,7 @@
 package com.xaw4.craftcraft.init;
 
 import com.xaw4.craftcraft.blocks.BlockCC;
+import com.xaw4.craftcraft.blocks.SlotCrafter;
 import com.xaw4.craftcraft.blocks.SlotChest;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -9,9 +10,12 @@ import cpw.mods.fml.common.registry.GameRegistry;
  */
 public class ModBlocks {
     public static final BlockCC slotChest = new SlotChest();
+    public static final BlockCC slotCrafter = new SlotCrafter();
+
 
     public static void init(){
-        GameRegistry.registerBlock(slotChest, slotChest.getName());
+        slotChest.registerBlock();
+        slotCrafter.registerBlock();
     }
 
 }

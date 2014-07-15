@@ -1,1 +1,2 @@
-tile.craftcraft:slotChest.name = Slot Chest
+tile.craftcraft:slotChest.name=Slot Chest
+tile.craftcraft:slotCrafter.name=Slot Crafter

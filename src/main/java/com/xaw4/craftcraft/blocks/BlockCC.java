@@ -2,6 +2,7 @@ package com.xaw4.craftcraft.blocks;
 
 import com.xaw4.craftcraft.ModProperties;
 import com.xaw4.craftcraft.creativetab.CraftCraftCreativeTab;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -22,6 +23,10 @@ public abstract class BlockCC extends Block {
         this.setCreativeTab(CraftCraftCreativeTab.instance);
     }
 
+    public void registerBlock()
+    {
+        GameRegistry.registerBlock(this, this.getName());
+    }
 
     @Override
     public String getUnlocalizedName() {

@@ -1,6 +1,7 @@
 package com.xaw4.craftcraft;
 
 import com.xaw4.craftcraft.init.ModBlocks;
+import com.xaw4.craftcraft.init.RecipeInitializer;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -28,7 +29,7 @@ public class CraftCraft {
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event){
-
+        RecipeInitializer.registerRecipes();
     }
 
     @Mod.EventHandler

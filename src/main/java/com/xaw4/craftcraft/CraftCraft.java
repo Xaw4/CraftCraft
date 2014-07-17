@@ -2,7 +2,10 @@ package com.xaw4.craftcraft;
 
 import com.xaw4.craftcraft.init.ModBlocks;
 import com.xaw4.craftcraft.init.RecipeInitializer;
+import com.xaw4.craftcraft.proxy.ClientProxy;
+import com.xaw4.craftcraft.proxy.Proxy;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -21,6 +24,9 @@ public class CraftCraft {
 
     @Mod.Instance(ModProperties.MOD_ID)
     public CraftCraft instance;
+
+    @SidedProxy(clientSide = ModProperties.CLIENT_PROXY, serverSide = ModProperties.SERVER_PROXY)
+    public static Proxy proxy;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event){

@@ -12,5 +12,4 @@ public class SlotCrafter extends BlockCC{
     public SlotCrafter() {
         super("slotCrafter");
     }
-
 }

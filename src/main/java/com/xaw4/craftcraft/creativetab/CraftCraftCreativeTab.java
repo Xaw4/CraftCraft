@@ -1,6 +1,7 @@
 package com.xaw4.craftcraft.creativetab;
 
-import com.xaw4.craftcraft.ModProperties;
+import com.xaw4.craftcraft.constants.ModProperties;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;

@@ -1,11 +1,13 @@
 package com.xaw4.craftcraft.blocks;
 
-import com.xaw4.craftcraft.ModProperties;
+import com.xaw4.craftcraft.constants.ModProperties;
 import com.xaw4.craftcraft.creativetab.CraftCraftCreativeTab;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 

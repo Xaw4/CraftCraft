@@ -1,4 +1,4 @@
-package com.xaw4.craftcraft;
+package com.xaw4.craftcraft.constants;
 
 /**
  * Created by Xaw4 on 25.06.2014.
@@ -12,4 +12,6 @@ public class ModProperties {
     public static final String CLIENT_PROXY = "com.xaw4.craftcraft.proxy.ClientProxy";
     public static final String SERVER_PROXY = "com.xaw4.craftcraft.proxy.ServerProxy";
 
+    public static final String TEX_SLOTCHEST = "textures/gui/slotChestGui.png";
+    
 }

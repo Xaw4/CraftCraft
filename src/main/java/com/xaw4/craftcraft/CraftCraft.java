@@ -1,9 +1,13 @@
 package com.xaw4.craftcraft;
 
+import com.xaw4.craftcraft.constants.ModProperties;
+import com.xaw4.craftcraft.gui.GuiHandler;
 import com.xaw4.craftcraft.init.ModBlocks;
 import com.xaw4.craftcraft.init.RecipeInitializer;
 import com.xaw4.craftcraft.proxy.ClientProxy;
 import com.xaw4.craftcraft.proxy.Proxy;
+import com.xaw4.craftcraft.tileentity.TileEntitiesCC;
+
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -23,7 +27,7 @@ import net.minecraft.item.ItemStack;
 public class CraftCraft {
 
     @Mod.Instance(ModProperties.MOD_ID)
-    public CraftCraft instance;
+    public static CraftCraft instance;
 
     @SidedProxy(clientSide = ModProperties.CLIENT_PROXY, serverSide = ModProperties.SERVER_PROXY)
     public static Proxy proxy;
@@ -31,11 +35,14 @@ public class CraftCraft {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event){
         ModBlocks.init();
+        proxy.registerRenderers();
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event){
         RecipeInitializer.registerRecipes();
+        GuiHandler.init();
+        TileEntitiesCC.init();
     }
 
     @Mod.EventHandler

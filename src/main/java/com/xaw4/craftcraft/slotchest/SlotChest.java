@@ -17,7 +17,7 @@ public class SlotChest extends AbstractSlotBlock {
 	public static final String NAME = "slotChest";
 	
     public SlotChest(){
-        super(NAME, 3);
+        super(NAME);
     }
 
 	@Override

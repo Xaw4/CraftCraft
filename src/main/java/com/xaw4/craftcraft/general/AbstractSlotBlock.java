@@ -15,6 +15,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public abstract class AbstractSlotBlock extends BlockCC implements ITileEntityProvider{
 
@@ -25,14 +26,11 @@ public abstract class AbstractSlotBlock extends BlockCC implements ITileEntityPr
     @SideOnly(Side.CLIENT)
     protected IIcon topIcon;
 	
-    private int frontSide;
     
-	protected AbstractSlotBlock(String name, int frontSide)
+	protected AbstractSlotBlock(String name)
 	{
 		super(name);
 		this.isBlockContainer = true;
-		
-		this.frontSide = frontSide;
 	}
 
 
@@ -52,7 +50,7 @@ public abstract class AbstractSlotBlock extends BlockCC implements ITileEntityPr
 	public IIcon getIcon(int side, int metadata)
 	{
 		// used to render the Block as item
-		if(side == frontSide){
+		if(side == ForgeDirection.NORTH.ordinal()){
 			return frontIcon;
 		}
 		else if (side == 0 || side ==1) 
@@ -75,7 +73,7 @@ public abstract class AbstractSlotBlock extends BlockCC implements ITileEntityPr
 	    	TileEntitySlotGeneric slotEntity = (TileEntitySlotGeneric) te;
 	      facing = slotEntity.getFacing();
 	    }
-	    return blockSide==facing ? this.frontIcon : (
+	    return blockSide == facing ? this.frontIcon : (
 	    	blockSide == 0 || blockSide == 1 ? 
 	    			this.topIcon : this.blockIcon);
 	    

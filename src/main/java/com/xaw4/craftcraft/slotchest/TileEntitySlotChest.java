@@ -6,33 +6,16 @@ import net.minecraft.item.ItemStack;
 
 public class TileEntitySlotChest extends TileEntitySlotGeneric
 {
-	private static final int STACK_COUNT = 6;
-
 	private int stackLimit = 64;
-	
-	private ItemStack[] slots = new ItemStack[STACK_COUNT];
 
+	
+	
 	@Override
 	public void updateEntity()
 	{
 	}
 
 	//IInventory
-	@Override
-	public int getSizeInventory()
-	{
-		return 0;
-	}
-
-	@Override
-	public ItemStack getStackInSlot(int slotNum)
-	{
-		if(0 <= slotNum && slotNum < STACK_COUNT)
-		{
-			return slots[slotNum];
-		}
-		return null;
-	}
 
 	@Override
 	public ItemStack decrStackSize(int slotNum, int count)
@@ -59,15 +42,6 @@ public class TileEntitySlotChest extends TileEntitySlotGeneric
 		ItemStack stack = getStackInSlot(slotNum);
         setInventorySlotContents(slotNum, null);
         return stack;
-	}
-
-	@Override
-	public void setInventorySlotContents(int slotNum, ItemStack itemStack)
-	{
-		if(0 <= slotNum && slotNum < STACK_COUNT)
-		{
-			slots[slotNum] = itemStack;
-		}
 	}
 
 	@Override

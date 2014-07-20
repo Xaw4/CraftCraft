@@ -1,12 +1,12 @@
 package com.xaw4.craftcraft;
 
 import com.xaw4.craftcraft.constants.ModProperties;
-import com.xaw4.craftcraft.gui.GuiHandler;
+import com.xaw4.craftcraft.handler.GuiHandler;
 import com.xaw4.craftcraft.init.ModBlocks;
 import com.xaw4.craftcraft.init.RecipeInitializer;
+import com.xaw4.craftcraft.init.TileEntitiesCC;
 import com.xaw4.craftcraft.proxy.ClientProxy;
 import com.xaw4.craftcraft.proxy.Proxy;
-import com.xaw4.craftcraft.tileentity.TileEntitiesCC;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;

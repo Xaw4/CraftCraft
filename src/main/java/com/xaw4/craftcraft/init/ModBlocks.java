@@ -1,8 +1,9 @@
 package com.xaw4.craftcraft.init;
 
-import com.xaw4.craftcraft.blocks.BlockCC;
-import com.xaw4.craftcraft.blocks.SlotCrafter;
-import com.xaw4.craftcraft.blocks.SlotChest;
+import com.xaw4.craftcraft.parents.BlockCC;
+import com.xaw4.craftcraft.slotchest.SlotChest;
+import com.xaw4.craftcraft.slotcrafter.SlotCrafter;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 
 /**

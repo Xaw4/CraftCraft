@@ -1,9 +1,11 @@
-package com.xaw4.craftcraft.gui;
+package com.xaw4.craftcraft.handler;
 
 import com.xaw4.craftcraft.CraftCraft;
-import com.xaw4.craftcraft.container.ContainerSlotChest;
-import com.xaw4.craftcraft.tileentity.TileEntitySlotChest;
-import com.xaw4.craftcraft.tileentity.TileEntitySlotGeneric;
+import com.xaw4.craftcraft.constants.TileEntityIds;
+import com.xaw4.craftcraft.parents.TileEntitySlotGeneric;
+import com.xaw4.craftcraft.slotchest.ContainerSlotChest;
+import com.xaw4.craftcraft.slotchest.GuiSlotChest;
+import com.xaw4.craftcraft.slotchest.TileEntitySlotChest;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -43,7 +45,7 @@ public class GuiHandler implements IGuiHandler {
 		TileEntity te = world.getTileEntity(x, y, z);
 		if(te != null && te instanceof TileEntitySlotGeneric)
 		{
-			if(id == TileEntitySlotChest.GUI_ID && te instanceof TileEntitySlotChest)
+			if(id == TileEntityIds.slotChest.ordinal() && te instanceof TileEntitySlotChest)
 			{
 				return new ContainerSlotChest(player.inventory, (TileEntitySlotChest) te);
 			}
@@ -59,7 +61,7 @@ public class GuiHandler implements IGuiHandler {
 		TileEntity te = world.getTileEntity(x, y, z);
 		if(te != null && te instanceof TileEntitySlotGeneric)
 		{
-			if(id == TileEntitySlotChest.GUI_ID && te instanceof TileEntitySlotChest)
+			if(id == TileEntityIds.slotChest.ordinal() && te instanceof TileEntitySlotChest)
 			{
 				return new GuiSlotChest(player.inventory, (TileEntitySlotChest) te);
 			}

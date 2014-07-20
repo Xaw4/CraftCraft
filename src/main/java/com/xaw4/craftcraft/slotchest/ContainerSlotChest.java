@@ -1,7 +1,6 @@
-package com.xaw4.craftcraft.container;
+package com.xaw4.craftcraft.slotchest;
 
 import com.sun.org.apache.bcel.internal.generic.ISUB;
-import com.xaw4.craftcraft.tileentity.TileEntitySlotChest;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

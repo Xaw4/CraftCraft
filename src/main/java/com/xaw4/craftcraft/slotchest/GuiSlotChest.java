@@ -1,10 +1,8 @@
-package com.xaw4.craftcraft.gui;
+package com.xaw4.craftcraft.slotchest;
 
 import org.lwjgl.opengl.GL11;
 
 import com.xaw4.craftcraft.constants.ModProperties;
-import com.xaw4.craftcraft.container.ContainerSlotChest;
-import com.xaw4.craftcraft.tileentity.TileEntitySlotChest;
 
 import cpw.mods.fml.common.FMLLog;
 import net.minecraft.client.Minecraft;

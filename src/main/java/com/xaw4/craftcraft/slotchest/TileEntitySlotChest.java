@@ -1,12 +1,11 @@
-package com.xaw4.craftcraft.tileentity;
+package com.xaw4.craftcraft.slotchest;
+
+import com.xaw4.craftcraft.parents.TileEntitySlotGeneric;
 
 import net.minecraft.item.ItemStack;
 
 public class TileEntitySlotChest extends TileEntitySlotGeneric
 {
-
-	public static int GUI_ID = 1;
-
 	private static final int STACK_COUNT = 6;
 
 	private int stackLimit = 64;
@@ -18,6 +17,7 @@ public class TileEntitySlotChest extends TileEntitySlotGeneric
 	{
 	}
 
+	//IInventory
 	@Override
 	public int getSizeInventory()
 	{
@@ -90,6 +90,22 @@ public class TileEntitySlotChest extends TileEntitySlotGeneric
 
 	@Override
 	public boolean isItemValidForSlot(int slotNum, ItemStack itemStack)
+	{
+		return true;
+	}
+
+	
+	//ISidedInventory
+	@Override
+	public boolean canInsertItem(int slotNum, ItemStack item,
+			int side)
+	{
+		return true;
+	}
+
+	@Override
+	public boolean canExtractItem(int slotNum, ItemStack item,
+			int side)
 	{
 		return true;
 	}

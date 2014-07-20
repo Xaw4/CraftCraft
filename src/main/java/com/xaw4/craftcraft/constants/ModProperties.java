@@ -14,4 +14,6 @@ public class ModProperties {
 
     public static final String TEX_SLOTCHEST = "textures/gui/slotChestGui.png";
     
+    public static final String POSTFIX_FRONT = "_front";
+    public static final String POSTFIX_TOP = "_top";
 }

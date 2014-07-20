@@ -1,6 +1,6 @@
 package com.xaw4.craftcraft.init;
 
-import com.xaw4.craftcraft.parents.BlockCC;
+import com.xaw4.craftcraft.general.BlockCC;
 import com.xaw4.craftcraft.slotchest.SlotChest;
 import com.xaw4.craftcraft.slotcrafter.SlotCrafter;
 

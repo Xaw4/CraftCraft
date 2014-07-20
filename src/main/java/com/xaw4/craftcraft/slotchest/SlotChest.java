@@ -2,7 +2,7 @@ package com.xaw4.craftcraft.slotchest;
 
 import com.xaw4.craftcraft.CraftCraft;
 import com.xaw4.craftcraft.constants.TileEntityIds;
-import com.xaw4.craftcraft.parents.AbstractSlotBlock;
+import com.xaw4.craftcraft.general.AbstractSlotBlock;
 
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.network.internal.FMLNetworkHandler;

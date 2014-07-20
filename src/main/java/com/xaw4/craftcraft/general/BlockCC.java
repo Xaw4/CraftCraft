@@ -1,4 +1,4 @@
-package com.xaw4.craftcraft.parents;
+package com.xaw4.craftcraft.general;
 
 import com.xaw4.craftcraft.constants.ModProperties;
 import com.xaw4.craftcraft.creativetab.CraftCraftCreativeTab;

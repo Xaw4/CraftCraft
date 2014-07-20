@@ -1,6 +1,6 @@
 package com.xaw4.craftcraft.slotchest;
 
-import com.xaw4.craftcraft.parents.TileEntitySlotGeneric;
+import com.xaw4.craftcraft.general.TileEntitySlotGeneric;
 
 import net.minecraft.item.ItemStack;
 

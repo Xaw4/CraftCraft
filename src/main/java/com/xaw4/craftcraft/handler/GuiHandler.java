@@ -2,7 +2,7 @@ package com.xaw4.craftcraft.handler;
 
 import com.xaw4.craftcraft.CraftCraft;
 import com.xaw4.craftcraft.constants.TileEntityIds;
-import com.xaw4.craftcraft.parents.TileEntitySlotGeneric;
+import com.xaw4.craftcraft.general.TileEntitySlotGeneric;
 import com.xaw4.craftcraft.slotchest.ContainerSlotChest;
 import com.xaw4.craftcraft.slotchest.GuiSlotChest;
 import com.xaw4.craftcraft.slotchest.TileEntitySlotChest;

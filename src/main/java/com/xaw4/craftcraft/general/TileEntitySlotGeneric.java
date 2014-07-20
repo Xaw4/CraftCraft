@@ -1,4 +1,4 @@
-package com.xaw4.craftcraft.parents;
+package com.xaw4.craftcraft.general;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

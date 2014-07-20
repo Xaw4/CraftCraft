@@ -1,6 +1,6 @@
 package com.xaw4.craftcraft.slotcrafter;
 
-import com.xaw4.craftcraft.parents.BlockCC;
+import com.xaw4.craftcraft.general.BlockCC;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;

@@ -2,7 +2,7 @@ package com.xaw4.craftcraft.handler;
 
 import com.xaw4.craftcraft.CraftCraft;
 import com.xaw4.craftcraft.constants.TileEntityIds;
-import com.xaw4.craftcraft.general.TileEntitySlotGeneric;
+import com.xaw4.craftcraft.general.AbstractSlotTileEntity;
 import com.xaw4.craftcraft.slotchest.ContainerSlotChest;
 import com.xaw4.craftcraft.slotchest.GuiSlotChest;
 import com.xaw4.craftcraft.slotchest.TileEntitySlotChest;
@@ -43,11 +43,13 @@ public class GuiHandler implements IGuiHandler {
 			int x, int y, int z)
 	{
 		TileEntity te = world.getTileEntity(x, y, z);
-		if(te != null && te instanceof TileEntitySlotGeneric)
+		if(te != null && te instanceof AbstractSlotTileEntity)
 		{
 			if(id == TileEntityIds.slotChest.ordinal() && te instanceof TileEntitySlotChest)
 			{
-				return new ContainerSlotChest(player.inventory, (TileEntitySlotChest) te);
+				TileEntitySlotChest tesc = (TileEntitySlotChest) te;
+				tesc.log();
+				return new ContainerSlotChest(player.inventory, tesc);
 			}
 		}
 		
@@ -59,11 +61,14 @@ public class GuiHandler implements IGuiHandler {
 			int x, int y, int z)
 	{
 		TileEntity te = world.getTileEntity(x, y, z);
-		if(te != null && te instanceof TileEntitySlotGeneric)
+		if(te != null && te instanceof AbstractSlotTileEntity)
 		{
 			if(id == TileEntityIds.slotChest.ordinal() && te instanceof TileEntitySlotChest)
 			{
-				return new GuiSlotChest(player.inventory, (TileEntitySlotChest) te);
+
+				TileEntitySlotChest tesc = (TileEntitySlotChest) te;
+				tesc.log();
+				return new GuiSlotChest(player.inventory, tesc);
 			}
 		}
 		return null;

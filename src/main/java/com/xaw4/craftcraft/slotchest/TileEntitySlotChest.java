@@ -1,10 +1,10 @@
 package com.xaw4.craftcraft.slotchest;
 
-import com.xaw4.craftcraft.general.TileEntitySlotGeneric;
+import com.xaw4.craftcraft.general.AbstractSlotTileEntity;
 
 import net.minecraft.item.ItemStack;
 
-public class TileEntitySlotChest extends TileEntitySlotGeneric
+public class TileEntitySlotChest extends AbstractSlotTileEntity
 {
 	private int stackLimit = 64;
 

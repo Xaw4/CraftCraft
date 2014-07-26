@@ -43,8 +43,6 @@ public abstract class AbstractSlotTileEntity extends TileEntity implements
 		faceData = new FaceData();
 		faceConfiguration = new FaceConfiguration();
 		slots = new ItemStack[STACK_COUNT];
-//		Integer[] dummyconfig = { 0, 2, 2, 2, null, null };
-//		faceConfiguration.setAssignedSlots(nullconfig);
 	}
 
 	public void assignSlot(RelativeFace face, int slot)

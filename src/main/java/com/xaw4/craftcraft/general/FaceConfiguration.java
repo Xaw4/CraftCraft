@@ -32,6 +32,7 @@ public class FaceConfiguration
 
 	public FaceConfiguration()
 	{
+		unassignAllSlots();
 	}
 
 	public FaceConfiguration(final int[] assignedSlots)
@@ -42,6 +43,14 @@ public class FaceConfiguration
 		}
 	}
 
+	public void unassignAllSlots()
+	{
+		for (int i = 0; i < assignedSlots.length; i++)
+		{
+			assignedSlots[i] = UNASSIGNED;
+		}
+	}
+	
 	public void setAssignedSlot(RelativeFace face, final int slot)
 	{
 		assignedSlots[face.ordinal()] = 0 <= slot && slot < 6 ? slot : UNASSIGNED;
@@ -168,6 +177,7 @@ public class FaceConfiguration
 		for (int slot : assignedSlots)
 		{
 			sb.append(slot);
+			sb.append("|");
 		}
 		sb.append(" ]");
 		FMLLog.info("FaceConfiguration: %s", sb);

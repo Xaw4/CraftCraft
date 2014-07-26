@@ -26,6 +26,9 @@ public abstract class BlockCC extends Block {
         this.name = name;
         this.setBlockName(name);
         this.setCreativeTab(CraftCraftCreativeTab.instance);
+        this.setHardness(1.5F);
+        this.setResistance(10.0F);
+        this.setStepSound(soundTypePiston);
     }
     
 

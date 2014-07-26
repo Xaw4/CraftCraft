@@ -11,12 +11,15 @@ import net.minecraft.item.ItemStack;
 public class ContainerSlotChest extends Container
 {
 
+
 	private TileEntitySlotChest te;
 
-	private static final int SLOT_WIDTH = 18;
-	private static final int FIRST_SLOT_X = 26;
+	private static final int SLOT_WIDTH = 18+4;
+	private static final int FIRST_SLOT_X = 25;
 	private static final int FIRST_SLOT_Y = 62;
 
+	private static final int PLAYER_INV_Y = 142;
+	
 	private static final int SLOT_COUNT = 6;
 
 	public ContainerSlotChest(InventoryPlayer inventoryPlayer,
@@ -46,7 +49,7 @@ public class ContainerSlotChest extends Container
 
 		for (int i = 0; i < 9; i++)
 		{
-			addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 142));
+			addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, PLAYER_INV_Y));
 		}
 	}
 
@@ -54,8 +57,9 @@ public class ContainerSlotChest extends Container
 	{
 		for (int slotNum = 0; slotNum < SLOT_COUNT; slotNum++)
 		{
-			addSlotToContainer(new Slot(te, slotNum, FIRST_SLOT_X + slotNum
-					* SLOT_WIDTH, FIRST_SLOT_Y));
+			addSlotToContainer(new Slot(te, slotNum, 
+					FIRST_SLOT_X + slotNum * SLOT_WIDTH,
+					FIRST_SLOT_Y));
 		}
 	}
 

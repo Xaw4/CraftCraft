@@ -34,7 +34,7 @@ public abstract class AbstractSlotTileEntity extends TileEntity implements
 
 	private ItemStack[] slots;
 
-	private static final Integer[] dummyconfig = { 0, 2, 2, 2, null, null };
+//	private static final Integer[] dummyconfig = { 0, 2, 2, 2, null, null };
 
 	private static final Integer[] nullconfig = new Integer[6];
 
@@ -43,8 +43,8 @@ public abstract class AbstractSlotTileEntity extends TileEntity implements
 		faceData = new FaceData();
 		faceConfiguration = new FaceConfiguration();
 		slots = new ItemStack[STACK_COUNT];
-		Integer[] dummyconfig = { 0, 2, 2, 2, null, null };
-		faceConfiguration.setAssignedSlots(dummyconfig);
+//		Integer[] dummyconfig = { 0, 2, 2, 2, null, null };
+//		faceConfiguration.setAssignedSlots(nullconfig);
 	}
 
 	@Override

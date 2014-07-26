@@ -65,7 +65,6 @@ public class GuiHandler implements IGuiHandler {
 		{
 			if(id == TileEntityIds.slotChest.ordinal() && te instanceof TileEntitySlotChest)
 			{
-
 				TileEntitySlotChest tesc = (TileEntitySlotChest) te;
 				tesc.log();
 				return new GuiSlotChest(player.inventory, tesc);

@@ -2,6 +2,7 @@ package com.xaw4.craftcraft;
 
 import com.xaw4.craftcraft.constants.ModProperties;
 import com.xaw4.craftcraft.handler.GuiHandler;
+import com.xaw4.craftcraft.handler.NetworkHandler;
 import com.xaw4.craftcraft.init.ModBlocks;
 import com.xaw4.craftcraft.init.RecipeInitializer;
 import com.xaw4.craftcraft.init.TileEntitiesCC;
@@ -43,6 +44,7 @@ public class CraftCraft {
         RecipeInitializer.registerRecipes();
         GuiHandler.init();
         TileEntitiesCC.init();
+        NetworkHandler.init();
     }
 
     @Mod.EventHandler

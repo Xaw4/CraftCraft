@@ -1,6 +1,7 @@
 package com.xaw4.craftcraft.slotchest;
 
 import com.sun.org.apache.bcel.internal.generic.ISUB;
+import com.xaw4.craftcraft.util.RelativeFace;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -30,6 +31,11 @@ public class ContainerSlotChest extends Container
 		bindPlayerInventory(inventoryPlayer);
 	}
 
+	public void assignSlot(RelativeFace face, int slot)
+	{
+		te.assignSlot(face, slot);
+	}
+	
 	@Override
 	public boolean canInteractWith(EntityPlayer entityPlayer)
 	{

@@ -24,9 +24,9 @@ public class FaceConfiguration
 	 * the array values correspond to the sides BOT, TOP, Front, Right, Back,
 	 * Left null => not set
 	 */
-	public Integer[] assignedSlots = new Integer[6];
+	public int[] assignedSlots = new int[6];
 
-	private static final int UNASSIGNED = -1;
+	public static final int UNASSIGNED = Byte.MIN_VALUE;
 
 	public static final String CONFIGURATION_KEY_NBT = "Configuration";
 
@@ -34,7 +34,7 @@ public class FaceConfiguration
 	{
 	}
 
-	public FaceConfiguration(final Integer[] assignedSlots)
+	public FaceConfiguration(final int[] assignedSlots)
 	{
 		if (assignedSlots.length == 6)
 		{
@@ -42,9 +42,9 @@ public class FaceConfiguration
 		}
 	}
 
-	public void setAssignedSlot(RelativeFace face, Integer slot)
+	public void setAssignedSlot(RelativeFace face, final int slot)
 	{
-		assignedSlots[face.ordinal()] = slot;
+		assignedSlots[face.ordinal()] = 0 <= slot && slot < 6 ? slot : UNASSIGNED;
 	}
 
 	public Integer getAssignedSlot(RelativeFace face)
@@ -82,8 +82,7 @@ public class FaceConfiguration
 		int[] arrayForNBT = new int[assignedSlots.length];
 		for (short i = 0; i < arrayForNBT.length; i++)
 		{
-			arrayForNBT[i] = assignedSlots[i] == null ?
-					UNASSIGNED : assignedSlots[i];
+			arrayForNBT[i] = assignedSlots[i];
 		}
 		compound.setIntArray(CONFIGURATION_KEY_NBT, arrayForNBT);
 	}
@@ -118,7 +117,7 @@ public class FaceConfiguration
 			}
 			else
 			{
-				assignedSlots[i] = null;
+				assignedSlots[i] = UNASSIGNED;
 			}
 		}
 		return true;
@@ -127,7 +126,7 @@ public class FaceConfiguration
 	/**
 	 * @return the assignedSlots
 	 */
-	public Integer[] getAssignedSlots()
+	public int[] getAssignedSlots()
 	{
 		return assignedSlots;
 	}
@@ -136,15 +135,41 @@ public class FaceConfiguration
 	 * @param assignedSlots
 	 *            the assignedSlots to set
 	 */
-	public void setAssignedSlots(Integer[] assignedSlots)
+	public void setAssignedSlots(int[] assignedSlots)
 	{
 		this.assignedSlots = assignedSlots;
 	}
-
+	
+	/**
+	 * selects the next assigned slot for the face 
+	 * @param face the face to be changed
+	 * @return number of the selected slot (or FaceConfiguration.UNASSIGNED)
+	 */
+	public int incrementSlotAssignment(RelativeFace face){
+		int faceIdx= face.ordinal();
+		if(assignedSlots[faceIdx] == UNASSIGNED)
+		{
+				assignedSlots[faceIdx] = 0;
+		}
+		else if(assignedSlots[faceIdx] >=5)
+		{
+				assignedSlots[faceIdx] = UNASSIGNED;
+		}		
+		else
+		{
+				assignedSlots[faceIdx]++;
+		}
+		return assignedSlots[faceIdx];
+	}
 
 	public void log()
 	{
-		FMLLog.info("FaceConfiguration: %s", Lists.newArrayList(assignedSlots).toString());
+		StringBuffer sb = new StringBuffer("[");
+		for (int slot : assignedSlots)
+		{
+			sb.append(slot);
+		}
+		sb.append(" ]");
+		FMLLog.info("FaceConfiguration: %s", sb);
 	}
-	
 }

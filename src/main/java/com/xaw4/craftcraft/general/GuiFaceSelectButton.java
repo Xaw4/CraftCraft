@@ -3,6 +3,7 @@ package com.xaw4.craftcraft.general;
 import org.lwjgl.opengl.GL11;
 
 import com.xaw4.craftcraft.constants.ModProperties;
+import com.xaw4.craftcraft.util.RelativeFace;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -16,12 +17,24 @@ public class GuiFaceSelectButton extends GuiButton
 
 	protected static int _width = 13;
 	
-	public GuiFaceSelectButton(int id, int x, int y)
+	public GuiFaceSelectButton(int id, int x, int y, int assignedSlot)
 	{
 		super(id, x, y, 13, 13, " ");
+		setAssignedSlot(assignedSlot);
 	}
 
-	 /**
+	public void setAssignedSlot(int assignedSlot)
+	{
+		if(assignedSlot == FaceConfiguration.UNASSIGNED){
+			this.displayString = " ";
+		}
+		else 
+		{
+			this.displayString = String.valueOf(assignedSlot+1);
+		}
+	}
+
+	/**
      * Draws this button to the screen.
      */
     public void drawButton(Minecraft minecraft, int mouse_x, int mouse_y)

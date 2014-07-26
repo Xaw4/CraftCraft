@@ -3,7 +3,11 @@ package com.xaw4.craftcraft.slotchest;
 import org.lwjgl.opengl.GL11;
 
 import com.xaw4.craftcraft.constants.ModProperties;
+import com.xaw4.craftcraft.general.FaceConfiguration;
 import com.xaw4.craftcraft.general.GuiFaceSelectButton;
+import com.xaw4.craftcraft.handler.NetworkHandler;
+import com.xaw4.craftcraft.messages.MessageSlotAssignment;
+import com.xaw4.craftcraft.util.RelativeFace;
 
 import cpw.mods.fml.common.FMLLog;
 import net.minecraft.client.Minecraft;
@@ -68,7 +72,7 @@ public class GuiSlotChest extends GuiContainer {
 		if (topButton == null)
 		{
 			topButton = new GuiFaceSelectButton(
-					1, this.guiLeft + x_top, this.guiTop + y_top);
+					1, this.guiLeft + x_top, this.guiTop + y_top, te.getAssignedSlot(RelativeFace.TOP));
 			// this.buttonList.add( new GuiButton(
 			// 1, this.guiLeft + x_top, this.guiTop + y_top,
 			// buttonWidth, buttonWidth, "1"));
@@ -88,7 +92,17 @@ public class GuiSlotChest extends GuiContainer {
 	protected void actionPerformed(GuiButton button)
 	{
 		FMLLog.info("actionPerformed on %s", button);
-		button.displayString=" _x _";
+		if(button != null && button instanceof GuiFaceSelectButton)
+		{
+			GuiFaceSelectButton faceButton = (GuiFaceSelectButton) button;
+			if (0 <= faceButton.id && faceButton.id < 6)
+			{
+				RelativeFace face = RelativeFace.values()[faceButton.id];
+				int newAssignedSlot = te.incrementSlotAssignment(face);
+				NetworkHandler.getInstance().sendToServer(new MessageSlotAssignment(face, newAssignedSlot));
+				faceButton.setAssignedSlot(newAssignedSlot);
+			}
+		}
 	}
 
 	

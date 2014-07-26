@@ -47,6 +47,22 @@ public abstract class AbstractSlotTileEntity extends TileEntity implements
 //		faceConfiguration.setAssignedSlots(nullconfig);
 	}
 
+	public void assignSlot(RelativeFace face, int slot)
+	{
+		faceConfiguration.setAssignedSlot(face, slot);
+	}
+	
+	
+	/**
+	 * selects the next assigned slot for the face 
+	 * @param face the face to be changed
+	 * @return number of the selected slot (or FaceConfiguration.UNASSIGNED)
+	 */
+	public int incrementSlotAssignment(RelativeFace face)
+	{
+		return faceConfiguration.incrementSlotAssignment(face);
+	}
+	
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer entityPlayer)
 	{
@@ -54,6 +70,8 @@ public abstract class AbstractSlotTileEntity extends TileEntity implements
 				zCoord + 0.5) <= 64;
 	}
 
+	
+	
 	/* **************
 	 * IInventory
 	 */
@@ -99,16 +117,16 @@ public abstract class AbstractSlotTileEntity extends TileEntity implements
 	public int[] getAccessibleSlotsFromSide(int side)
 	{
 		ForgeDirection direction = ForgeDirection.getOrientation(side);
-		Integer face = faceConfiguration.getAssignedSlot(faceData
+		int slot = faceConfiguration.getAssignedSlot(faceData
 				.getRelativeFaceForDirection(direction));
 
-		FMLLog.finer("acessible slot for: %d = %s ", side, face);
+		FMLLog.finer("acessible slot for: %d = %s ", side, slot);
 
-		if (face == null)
+		if (slot == FaceConfiguration.UNASSIGNED)
 		{
 			return new int[0];
 		}
-		int[] faces = { face };
+		int[] faces = { slot };
 		return faces;
 	}
 
@@ -209,6 +227,11 @@ public abstract class AbstractSlotTileEntity extends TileEntity implements
 			FMLLog.severe("can not get slot %d, (%s)", index, e.getMessage());
 			return null;
 		}
+	}
+	
+	public int getAssignedSlot(RelativeFace face)
+	{
+		return faceConfiguration.getAssignedSlot(face);
 	}
 
 	protected void setSlot(int index, ItemStack itemStack)

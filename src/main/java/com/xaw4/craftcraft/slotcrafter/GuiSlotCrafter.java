@@ -1,4 +1,4 @@
-package com.xaw4.craftcraft.slotchest;
+package com.xaw4.craftcraft.slotcrafter;
 
 import org.lwjgl.opengl.GL11;
 
@@ -18,10 +18,12 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 
-public class GuiSlotChest extends AbstractSlotGui {
+public class GuiSlotCrafter extends AbstractSlotGui {
 	
-	public GuiSlotChest(InventoryPlayer invPlayer, TileEntitySlotChest te) {
-		super(te, new ContainerSlotChest(invPlayer, te));
+	
+	
+	public GuiSlotCrafter(InventoryPlayer invPlayer, TileEntitySlotCrafter te) {
+		super(te, new ContainerSlotCrafter(invPlayer, te));
 	}
 	
 	protected ResourceLocation getGuiBackgroundTexture()
@@ -30,7 +32,7 @@ public class GuiSlotChest extends AbstractSlotGui {
 		{
 			return texture;
 		}
-		return new ResourceLocation(ModProperties.MOD_ID, ModProperties.TEX_SLOTCHEST);
+		return new ResourceLocation(ModProperties.MOD_ID, ModProperties.TEX_SLOTCRAFTER);
 	}
 
 }

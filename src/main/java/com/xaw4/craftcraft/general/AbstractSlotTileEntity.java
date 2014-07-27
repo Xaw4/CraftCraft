@@ -1,9 +1,11 @@
 package com.xaw4.craftcraft.general;
 
+import com.xaw4.craftcraft.slotchest.ContainerSlotChest;
 import com.xaw4.craftcraft.util.RelativeFace;
 
 import cpw.mods.fml.common.FMLLog;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -33,6 +35,7 @@ public abstract class AbstractSlotTileEntity extends TileEntity implements
 	private FaceConfiguration faceConfiguration;
 
 	private ItemStack[] slots;
+	
 
 //	private static final Integer[] dummyconfig = { 0, 2, 2, 2, null, null };
 
@@ -49,6 +52,24 @@ public abstract class AbstractSlotTileEntity extends TileEntity implements
 	{
 		faceConfiguration.setAssignedSlot(face, slot);
 	}
+	
+	
+	/**
+	 * inventory used for the GUIHandler
+	 * @param inventory
+	 * @param slotTileEntity
+	 * @return
+	 */
+	public abstract AbstractSlotContainer getServerContainer(int guiId, InventoryPlayer inventory, AbstractSlotTileEntity slotTileEntity);
+	
+	
+	/**
+	 * Client gui for GUIHandler
+	 * @param inventory
+	 * @param slotTileEntity
+	 * @return
+	 */
+	public abstract AbstractSlotGui getClientGui(int guiId, InventoryPlayer inventory, AbstractSlotTileEntity slotTileEntity);
 	
 	
 	/**

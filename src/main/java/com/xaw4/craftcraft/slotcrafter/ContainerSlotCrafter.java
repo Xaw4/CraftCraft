@@ -1,4 +1,4 @@
-package com.xaw4.craftcraft.slotchest;
+package com.xaw4.craftcraft.slotcrafter;
 
 import com.xaw4.craftcraft.general.AbstractSlotContainer;
 import com.xaw4.craftcraft.general.AbstractSlotTileEntity;
@@ -10,10 +10,10 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class ContainerSlotChest extends AbstractSlotContainer
+public class ContainerSlotCrafter extends AbstractSlotContainer
 {
-	public ContainerSlotChest(InventoryPlayer inventoryPlayer,
-			TileEntitySlotChest te)
+	public ContainerSlotCrafter(InventoryPlayer inventoryPlayer,
+			TileEntitySlotCrafter te)
 	{
 		super(inventoryPlayer, te);
 	}

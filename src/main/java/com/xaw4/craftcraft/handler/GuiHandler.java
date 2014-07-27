@@ -1,11 +1,14 @@
 package com.xaw4.craftcraft.handler;
 
 import com.xaw4.craftcraft.CraftCraft;
-import com.xaw4.craftcraft.constants.TileEntityIds;
 import com.xaw4.craftcraft.general.AbstractSlotTileEntity;
+import com.xaw4.craftcraft.init.ModObject;
 import com.xaw4.craftcraft.slotchest.ContainerSlotChest;
 import com.xaw4.craftcraft.slotchest.GuiSlotChest;
 import com.xaw4.craftcraft.slotchest.TileEntitySlotChest;
+import com.xaw4.craftcraft.slotcrafter.ContainerSlotCrafter;
+import com.xaw4.craftcraft.slotcrafter.GuiSlotCrafter;
+import com.xaw4.craftcraft.slotcrafter.TileEntitySlotCrafter;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -45,12 +48,20 @@ public class GuiHandler implements IGuiHandler {
 		TileEntity te = world.getTileEntity(x, y, z);
 		if(te != null && te instanceof AbstractSlotTileEntity)
 		{
-			if(id == TileEntityIds.slotChest.ordinal() && te instanceof TileEntitySlotChest)
-			{
-				TileEntitySlotChest tesc = (TileEntitySlotChest) te;
-				tesc.log();
-				return new ContainerSlotChest(player.inventory, tesc);
-			}
+			AbstractSlotTileEntity slotTE = (AbstractSlotTileEntity) te;
+			return slotTE.getServerContainer(id, player.inventory, slotTE);
+//			if(id == ModObject.slotChest.id && te instanceof TileEntitySlotChest)
+//			{
+//				TileEntitySlotChest tesc = (TileEntitySlotChest) te;
+//				tesc.log();
+//				return new ContainerSlotChest(player.inventory, tesc);
+//			}
+//			else if(id == ModObject.slotCrafter.id && te instanceof TileEntitySlotChest)
+//			{
+//				TileEntitySlotCrafter tesc = (TileEntitySlotCrafter) te;
+//				tesc.log();
+//				return new ContainerSlotCrafter(player.inventory, tesc);
+//			}
 		}
 		
 		return null;
@@ -61,18 +72,29 @@ public class GuiHandler implements IGuiHandler {
 			int x, int y, int z)
 	{
 		TileEntity te = world.getTileEntity(x, y, z);
-		if(te != null && te instanceof AbstractSlotTileEntity)
+		if (te != null)
 		{
-			if(id == TileEntityIds.slotChest.ordinal() && te instanceof TileEntitySlotChest)
+			if (te instanceof AbstractSlotTileEntity)
 			{
-				TileEntitySlotChest tesc = (TileEntitySlotChest) te;
-				tesc.log();
-				return new GuiSlotChest(player.inventory, tesc);
+				AbstractSlotTileEntity slotTE = (AbstractSlotTileEntity) te;
+				return slotTE.getClientGui(id, player.inventory, slotTE);
+//				if (id == ModObject.slotChest.id
+//						&& te instanceof TileEntitySlotChest)
+//				{
+//					TileEntitySlotChest tesc = (TileEntitySlotChest) te;
+//					tesc.log();
+//					return new GuiSlotChest(player.inventory, tesc);
+//				}
+//				else if(id == ModObject.slotCrafter.id
+//						&& te instanceof TileEntitySlotCrafter)
+//				{
+//					TileEntitySlotCrafter tesc = (TileEntitySlotCrafter) te;
+//					tesc.log();
+//					return new GuiSlotCrafter(player.inventory, tesc);
+//				}
 			}
 		}
 		return null;
 	}
-	
-	
 	
 }

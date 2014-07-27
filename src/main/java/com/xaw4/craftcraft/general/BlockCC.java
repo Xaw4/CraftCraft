@@ -18,12 +18,13 @@ import net.minecraft.util.IIcon;
  */
 public abstract class BlockCC extends Block {
 
-    protected String name;
+    private String unqualifiedName;
 
     
+    
     protected BlockCC(String name) {
-        super(Material.rock);
-        this.name = name;
+        super(Material.wood);
+        this.unqualifiedName = name;
         this.setBlockName(name);
         this.setCreativeTab(CraftCraftCreativeTab.instance);
         this.setHardness(1.5F);
@@ -34,28 +35,22 @@ public abstract class BlockCC extends Block {
 
     public void registerBlock()
     {
-        GameRegistry.registerBlock(this, this.getName());
+        GameRegistry.registerBlock(this, this.unqualifiedName);
     }
 
     @Override
     public String getUnlocalizedName() {
-        return "tile." + this.getFullName();
+        return "tile." + this.getQualifiedName();
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister) {
-        this.blockIcon = iconRegister.registerIcon(this.getFullName());
+        this.blockIcon = iconRegister.registerIcon(this.getQualifiedName());
     }
     
-
-    public String getName(){
-        return this.name;
+    public String getQualifiedName(){
+        return ModProperties.MOD_ID + ":" + this.unqualifiedName;
     }
-
-    public String getFullName(){
-        return ModProperties.MOD_ID + ":" + this.name;
-    }
-    
     
 }

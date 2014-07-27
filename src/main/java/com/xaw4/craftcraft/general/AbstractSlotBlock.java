@@ -2,9 +2,12 @@ package com.xaw4.craftcraft.general;
 
 import java.util.Random;
 
+import com.xaw4.craftcraft.CraftCraft;
 import com.xaw4.craftcraft.constants.ModProperties;
+import com.xaw4.craftcraft.init.ModObject;
 
 import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.network.internal.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -12,6 +15,7 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -25,7 +29,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 public abstract class AbstractSlotBlock extends BlockCC implements
 		ITileEntityProvider
 {
-
+	private final ModObject modObject;
+	
 	private Random random;
 	
 	@SideOnly(Side.CLIENT)
@@ -35,11 +40,12 @@ public abstract class AbstractSlotBlock extends BlockCC implements
 	@SideOnly(Side.CLIENT)
 	protected IIcon topIcon;
 
-	protected AbstractSlotBlock(String name)
+	protected AbstractSlotBlock(ModObject modobject)
 	{
-		super(name);
+		super(modobject.unlocalizedName);
 		this.isBlockContainer = true;
 		this.random = new Random();
+		this.modObject = modobject;
 	}
 
 	@Override
@@ -47,10 +53,10 @@ public abstract class AbstractSlotBlock extends BlockCC implements
 	{
 		super.registerBlockIcons(iconRegister);
 
-		this.frontIcon = iconRegister.registerIcon(this.getFullName()
+		this.frontIcon = iconRegister.registerIcon(this.getQualifiedName()
 				+ ModProperties.POSTFIX_FRONT);
 		FMLLog.info("register front icon %s", this.frontIcon.toString());
-		this.topIcon = iconRegister.registerIcon(this.getFullName()
+		this.topIcon = iconRegister.registerIcon(this.getQualifiedName()
 				+ ModProperties.POSTFIX_TOP);
 		FMLLog.info("register top icon %s", this.frontIcon.toString());
 
@@ -72,6 +78,9 @@ public abstract class AbstractSlotBlock extends BlockCC implements
 		return super.getIcon(side, metadata);
 	}
 
+	/* (non-Javadoc)
+	 * @see net.minecraft.block.Block#getIcon(net.minecraft.world.IBlockAccess, int, int, int, int)
+	 */
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int blockSide)
@@ -90,6 +99,25 @@ public abstract class AbstractSlotBlock extends BlockCC implements
 
 	}
 
+	@Override
+	public boolean onBlockActivated(World world, int x, int y, int z,
+			EntityPlayer player, int side, float hitX, float hitY, float hitZ)
+	{
+		if (!world.isRemote)
+		{
+			FMLNetworkHandler.openGui(player, CraftCraft.instance,
+					this.modObject.id, world, x, y, z);
+			FMLLog.fine("World Is Not Remote %s", 
+					world.getTileEntity(x, y, z).toString());
+		}
+		else
+		{
+			FMLLog.fine("World Is Remote %s", 
+					world.getTileEntity(x, y, z).toString());
+		}
+		return true;
+	}
+	
 	@Override
 	public void onBlockPlacedBy(World world, int x, int y, int z,
 			EntityLivingBase player, ItemStack stack)

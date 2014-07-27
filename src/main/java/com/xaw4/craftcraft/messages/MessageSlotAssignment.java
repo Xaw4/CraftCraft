@@ -2,9 +2,10 @@ package com.xaw4.craftcraft.messages;
 
 import net.minecraft.inventory.Container;
 
+import com.xaw4.craftcraft.general.AbstractSlotContainer;
 import com.xaw4.craftcraft.general.FaceConfiguration;
 import com.xaw4.craftcraft.slotchest.ContainerSlotChest;
-import com.xaw4.craftcraft.slotchest.SlotChest;
+import com.xaw4.craftcraft.slotchest.BlockSlotChest;
 import com.xaw4.craftcraft.util.RelativeFace;
 
 import io.netty.buffer.ByteBuf;
@@ -53,9 +54,9 @@ public class MessageSlotAssignment implements IMessage,
 	{
 		Container container = ctx.getServerHandler().playerEntity.openContainer;
 		
-		if(container != null && container instanceof ContainerSlotChest)
+		if(container != null && container instanceof AbstractSlotContainer)
 		{
-			ContainerSlotChest sc= (ContainerSlotChest) container;
+			AbstractSlotContainer sc= (AbstractSlotContainer) container;
 			sc.assignSlot(message.face, message.assignedSlot);
 		}
 		

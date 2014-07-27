@@ -1,18 +1,22 @@
-package com.xaw4.craftcraft.slotchest;
+package com.xaw4.craftcraft.slotcrafter;
 
 import com.xaw4.craftcraft.general.AbstractSlotContainer;
 import com.xaw4.craftcraft.general.AbstractSlotGui;
 import com.xaw4.craftcraft.general.AbstractSlotTileEntity;
 import com.xaw4.craftcraft.init.ModObject;
+import com.xaw4.craftcraft.slotchest.ContainerSlotChest;
+import com.xaw4.craftcraft.slotchest.GuiSlotChest;
+import com.xaw4.craftcraft.slotchest.TileEntitySlotChest;
 
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
 /**
  * @author Xaw4
  * 
  */
-public class TileEntitySlotChest extends AbstractSlotTileEntity
+public class TileEntitySlotCrafter extends AbstractSlotTileEntity
 {
 	private int stackLimit = 64;
 
@@ -63,7 +67,7 @@ public class TileEntitySlotChest extends AbstractSlotTileEntity
 	@Override
 	public String getInventoryName()
 	{
-		return "SlotChest_Inv";
+		return "SlotCrafer_Inv";
 	}
 
 	/*
@@ -97,7 +101,7 @@ public class TileEntitySlotChest extends AbstractSlotTileEntity
 	@Override
 	public boolean isItemValidForSlot(int slotNum, ItemStack itemStack)
 	{
-		return 0 <= slotNum && slotNum < 6;
+		return 0 <= slotNum && slotNum < 5;
 	}
 
 	// ISidedInventory
@@ -111,7 +115,7 @@ public class TileEntitySlotChest extends AbstractSlotTileEntity
 	public boolean canInsertItem(int slotNum, ItemStack item,
 			int side)
 	{
-		return 0 <= slotNum && slotNum < 6;
+		return 0 <= slotNum && slotNum < 5;
 	}
 
 	/*
@@ -126,16 +130,16 @@ public class TileEntitySlotChest extends AbstractSlotTileEntity
 	{
 		return 0 <= slotNum && slotNum < 6;
 	}
-
+	
 	@Override
 	public AbstractSlotContainer getServerContainer(int guiId,
 			InventoryPlayer inventory, AbstractSlotTileEntity slotTileEntity)
 	{
-		if(guiId == ModObject.slotChest.id && slotTileEntity instanceof TileEntitySlotChest)
+		if(guiId == ModObject.slotCrafter.id && slotTileEntity instanceof TileEntitySlotCrafter)
 		{
-			TileEntitySlotChest te = (TileEntitySlotChest) slotTileEntity;
+			TileEntitySlotCrafter te = (TileEntitySlotCrafter) slotTileEntity;
 			te.log();
-			return new ContainerSlotChest(inventory, te);
+			return new ContainerSlotCrafter(inventory, te);
 		}
 		return null;
 	}
@@ -144,11 +148,11 @@ public class TileEntitySlotChest extends AbstractSlotTileEntity
 	public AbstractSlotGui getClientGui(int guiId, InventoryPlayer inventory,
 			AbstractSlotTileEntity slotTileEntity)
 	{
-		if (guiId == ModObject.slotChest.id && slotTileEntity instanceof TileEntitySlotChest)
+		if (guiId == ModObject.slotCrafter.id && slotTileEntity instanceof TileEntitySlotCrafter)
 		{
-			TileEntitySlotChest tesc = (TileEntitySlotChest) slotTileEntity;
+			TileEntitySlotCrafter tesc = (TileEntitySlotCrafter) slotTileEntity;
 			tesc.log();
-			return new GuiSlotChest(inventory, tesc);
+			return new GuiSlotCrafter(inventory, tesc);
 		}
 		return null;
 	}

@@ -1,6 +1,5 @@
 package com.xaw4.craftcraft.slotchest;
 
-import com.sun.org.apache.bcel.internal.generic.ISUB;
 import com.xaw4.craftcraft.util.RelativeFace;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,8 +10,6 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerSlotChest extends Container
 {
-
-
 	private TileEntitySlotChest te;
 
 	private static final int SLOT_WIDTH = 18+4;

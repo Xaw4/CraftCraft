@@ -1,5 +1,7 @@
 package com.xaw4.craftcraft.general;
 
+import java.util.Random;
+
 import com.xaw4.craftcraft.constants.ModProperties;
 
 import cpw.mods.fml.common.FMLLog;
@@ -9,8 +11,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
@@ -21,6 +26,8 @@ public abstract class AbstractSlotBlock extends BlockCC implements
 		ITileEntityProvider
 {
 
+	private Random random;
+	
 	@SideOnly(Side.CLIENT)
 	protected IIcon frontIcon;
 
@@ -32,6 +39,7 @@ public abstract class AbstractSlotBlock extends BlockCC implements
 	{
 		super(name);
 		this.isBlockContainer = true;
+		this.random = new Random();
 	}
 
 	@Override
@@ -117,14 +125,6 @@ public abstract class AbstractSlotBlock extends BlockCC implements
 		super.onBlockAdded(p_149726_1_, p_149726_2_, p_149726_3_, p_149726_4_);
 	}
 
-	@Override
-	public void breakBlock(World world, int p_149749_2_, int p_149749_3_,
-			int p_149749_4_, Block p_149749_5_, int p_149749_6_)
-	{
-		super.breakBlock(world, p_149749_2_, p_149749_3_, p_149749_4_,
-				p_149749_5_, p_149749_6_);
-		world.removeTileEntity(p_149749_2_, p_149749_3_, p_149749_4_);
-	}
 
 	@Override
 	public boolean onBlockEventReceived(World world, int p_149696_2_,
@@ -137,5 +137,53 @@ public abstract class AbstractSlotBlock extends BlockCC implements
 		return tileentity != null ? tileentity.receiveClientEvent(p_149696_5_,
 				p_149696_6_) : false;
 	}
+	
+	@Override
+	public void breakBlock(World world, int x, int y, int z, Block block, int p_149749_6_)
+    {
+        AbstractSlotTileEntity tileentityslotchest = (AbstractSlotTileEntity)world.getTileEntity(x, y, z);
+
+        if (tileentityslotchest != null)
+        {
+            for (int slotnum = 0; slotnum < tileentityslotchest.getSizeInventory(); ++slotnum)
+            {
+                ItemStack itemstack = tileentityslotchest.getStackInSlot(slotnum);
+
+                if (itemstack != null)
+                {
+                    float f = this.random.nextFloat() * 0.8F + 0.1F;
+                    float f1 = this.random.nextFloat() * 0.8F + 0.1F;
+                    EntityItem entityitem;
+
+                    for (float f2 = this.random.nextFloat() * 0.8F + 0.1F; itemstack.stackSize > 0; world.spawnEntityInWorld(entityitem))
+                    {
+                        int j1 = this.random.nextInt(21) + 10;
+
+                        if (j1 > itemstack.stackSize)
+                        {
+                            j1 = itemstack.stackSize;
+                        }
+
+                        itemstack.stackSize -= j1;
+                        entityitem = new EntityItem(world, (double)((float)x + f), (double)((float)y + f1), (double)((float)z + f2), new ItemStack(itemstack.getItem(), j1, itemstack.getItemDamage()));
+                        float f3 = 0.05F;
+                        entityitem.motionX = (double)((float)this.random.nextGaussian() * f3);
+                        entityitem.motionY = (double)((float)this.random.nextGaussian() * f3 + 0.2F);
+                        entityitem.motionZ = (double)((float)this.random.nextGaussian() * f3);
+
+                        if (itemstack.hasTagCompound())
+                        {
+                            entityitem.getEntityItem().setTagCompound((NBTTagCompound)itemstack.getTagCompound().copy());
+                        }
+                    }
+                }
+            }
+
+            world.func_147453_f(x, y, z, block);
+        }
+
+        super.breakBlock(world, x, y, z, block, p_149749_6_);
+		world.removeTileEntity(x, y, z);
+    }
 
 }

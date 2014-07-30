@@ -7,6 +7,7 @@ import cpw.mods.fml.common.FMLLog;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -36,8 +37,6 @@ public abstract class AbstractSlotTileEntity extends TileEntity implements
 
 	private ItemStack[] slots;
 	
-
-//	private static final Integer[] dummyconfig = { 0, 2, 2, 2, null, null };
 
 	private static final Integer[] nullconfig = new Integer[6];
 
@@ -110,6 +109,9 @@ public abstract class AbstractSlotTileEntity extends TileEntity implements
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.minecraft.inventory.IInventory#setInventorySlotContents(int, net.minecraft.item.ItemStack)
+	 */
 	@Override
 	public void setInventorySlotContents(int slotNum, ItemStack itemStack)
 	{
@@ -131,6 +133,9 @@ public abstract class AbstractSlotTileEntity extends TileEntity implements
 
 	/* ****************
 	 * ISidedInventory
+	 */
+	/* (non-Javadoc)
+	 * @see net.minecraft.inventory.ISidedInventory#getAccessibleSlotsFromSide(int)
 	 */
 	@Override
 	public int[] getAccessibleSlotsFromSide(int side)
@@ -266,6 +271,7 @@ public abstract class AbstractSlotTileEntity extends TileEntity implements
 		}
 	}
 	
+
 	public void log()
 	{
 		faceConfiguration.log();

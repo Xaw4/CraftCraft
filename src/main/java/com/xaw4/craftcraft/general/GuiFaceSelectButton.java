@@ -37,6 +37,7 @@ public class GuiFaceSelectButton extends GuiButton
 	/**
      * Draws this button to the screen.
      */
+	@Override
     public void drawButton(Minecraft minecraft, int mouse_x, int mouse_y)
     {
         if (this.visible)

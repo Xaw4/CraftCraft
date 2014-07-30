@@ -1,5 +1,7 @@
 package com.xaw4.craftcraft.general;
 
+import org.lwjgl.util.Point;
+
 import com.xaw4.craftcraft.general.AbstractSlotTileEntity;
 import com.xaw4.craftcraft.util.RelativeFace;
 
@@ -13,11 +15,12 @@ public abstract class AbstractSlotContainer extends Container
 {
 	private AbstractSlotTileEntity te;
 
-	private static final int SLOT_WIDTH = 18+4;
-	private static final int FIRST_SLOT_X = 25;
-	private static final int FIRST_SLOT_Y = 62;
+	/** actual width + spacing */
+	protected static final int SLOT_WIDTH = 18+4; 
+	
+	protected final Point firstSlot; 
 
-	private static final int PLAYER_INV_Y = 142;
+	protected final Point playerInventory;
 	
 	private static final int SLOT_COUNT = 6;
 
@@ -25,10 +28,25 @@ public abstract class AbstractSlotContainer extends Container
 			AbstractSlotTileEntity te)
 	{
 		this.te = te;
+		firstSlot = getFirstSlot();
+		playerInventory = getPlayerInventory();
 		addChestSlots();
 		bindPlayerInventory(inventoryPlayer);
+		addCustomSlots();
 	}
-
+	
+	/**
+	 * 
+	 * @return the coordinates of the first (top, left) slot slots
+	 */
+	protected abstract Point getFirstSlot();
+	
+	/**
+	 * 
+	 * @return the coordinates of the player inventory (top, left pixel)
+	 */
+	protected abstract Point getPlayerInventory();
+	
 	public void assignSlot(RelativeFace face, int slot)
 	{
 		te.assignSlot(face, slot);
@@ -42,18 +60,21 @@ public abstract class AbstractSlotContainer extends Container
 
 	protected void bindPlayerInventory(InventoryPlayer inventoryPlayer)
 	{
+		int invx = playerInventory.getX();
+		int invy = playerInventory.getY() - (4+3*18);
 		for (int i = 0; i < 3; i++)
 		{
 			for (int j = 0; j < 9; j++)
 			{
 				addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9,
-						8 + j * 18, 84 + i * 18));
+						invx + j * 18, invy + i * 18));
 			}
 		}
 
 		for (int i = 0; i < 9; i++)
 		{
-			addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, PLAYER_INV_Y));
+			addSlotToContainer(new Slot(inventoryPlayer, i, 
+					playerInventory.getX() + i * 18, playerInventory.getY()));
 		}
 	}
 
@@ -62,10 +83,15 @@ public abstract class AbstractSlotContainer extends Container
 		for (int slotNum = 0; slotNum < SLOT_COUNT; slotNum++)
 		{
 			addSlotToContainer(new Slot(te, slotNum, 
-					FIRST_SLOT_X + slotNum * SLOT_WIDTH,
-					FIRST_SLOT_Y));
+					firstSlot.getX() + slotNum * SLOT_WIDTH,
+					firstSlot.getY()));
 		}
 	}
+	
+	/**
+	 * used as a hook for inheriting classes (is called after bindUserInventory and addChestSlots())
+	 */
+	protected void addCustomSlots(){}
 
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int slot)

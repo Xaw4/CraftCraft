@@ -1,5 +1,7 @@
 package com.xaw4.craftcraft.slotchest;
 
+import org.lwjgl.util.Point;
+
 import com.xaw4.craftcraft.general.AbstractSlotContainer;
 import com.xaw4.craftcraft.general.AbstractSlotTileEntity;
 import com.xaw4.craftcraft.util.RelativeFace;
@@ -18,4 +20,16 @@ public class ContainerSlotChest extends AbstractSlotContainer
 		super(inventoryPlayer, te);
 	}
 
+	@Override
+	protected Point getFirstSlot()
+	{
+		return new Point(25, 62);
+	}
+
+	@Override
+	protected Point getPlayerInventory()
+	{
+		return new Point(8, 142);
+	}
+	
 }

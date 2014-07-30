@@ -1,6 +1,7 @@
 package com.xaw4.craftcraft.general;
 
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.Point;
 
 import com.xaw4.craftcraft.constants.ModProperties;
 import com.xaw4.craftcraft.general.FaceConfiguration;
@@ -30,11 +31,11 @@ public abstract class AbstractSlotGui extends GuiContainer {
 	private GuiButton backButton;
 	private GuiButton leftButton;
 	
-	private static int x_origin = 9;
-	private static int y_origin = 10;
-	private static int buttonWidth = 13;
-	private static int buttonSpacing = 1;
-	private static int buttonSpacingBack = 2;
+	private static final int x_origin = 9;
+	private static final int y_origin = 10;
+	private static final int buttonWidth = 13;
+	private static final int buttonSpacing = 1;
+	private static final int buttonSpacingBack = 2;
 	
 	
 	public AbstractSlotGui(AbstractSlotTileEntity te, 
@@ -50,7 +51,6 @@ public abstract class AbstractSlotGui extends GuiContainer {
 	}
 	
 	protected abstract ResourceLocation getGuiBackgroundTexture();
-
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f,

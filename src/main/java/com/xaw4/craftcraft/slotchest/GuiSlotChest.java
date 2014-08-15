@@ -18,7 +18,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 
-public class GuiSlotChest extends AbstractSlotGui {
+public class GuiSlotChest extends AbstractSlotGui<TileEntitySlotChest> {
 	
 	public GuiSlotChest(InventoryPlayer invPlayer, TileEntitySlotChest te) {
 		super(te, new ContainerSlotChest(invPlayer, te));

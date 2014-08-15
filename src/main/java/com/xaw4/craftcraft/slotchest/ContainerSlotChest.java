@@ -12,7 +12,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class ContainerSlotChest extends AbstractSlotContainer
+public class ContainerSlotChest extends AbstractSlotContainer<TileEntitySlotChest>
 {
 	public ContainerSlotChest(InventoryPlayer inventoryPlayer,
 			TileEntitySlotChest te)

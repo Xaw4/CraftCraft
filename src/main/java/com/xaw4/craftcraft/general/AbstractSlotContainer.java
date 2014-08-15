@@ -11,9 +11,9 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public abstract class AbstractSlotContainer extends Container
+public abstract class AbstractSlotContainer<TE extends AbstractSlotTileEntity> extends Container
 {
-	private AbstractSlotTileEntity te;
+	private TE te;
 
 	/** actual width + spacing */
 	protected static final int SLOT_WIDTH = 18+4; 
@@ -25,7 +25,7 @@ public abstract class AbstractSlotContainer extends Container
 	private static final int SLOT_COUNT = 6;
 
 	public AbstractSlotContainer(InventoryPlayer inventoryPlayer,
-			AbstractSlotTileEntity te)
+			TE te)
 	{
 		this.te = te;
 		firstSlot = getFirstSlot();
@@ -138,7 +138,7 @@ public abstract class AbstractSlotContainer extends Container
 		return stack;
 	}
 	
-	public AbstractSlotTileEntity getTileEntity(){
+	public TE getTileEntity(){
 		return te;
 	}
 }

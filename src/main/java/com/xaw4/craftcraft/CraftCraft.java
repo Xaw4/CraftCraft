@@ -8,6 +8,7 @@ import com.xaw4.craftcraft.init.RecipeInitializer;
 import com.xaw4.craftcraft.init.TileEntitiesCC;
 import com.xaw4.craftcraft.proxy.ClientProxy;
 import com.xaw4.craftcraft.proxy.Proxy;
+import com.xaw4.craftcraft.util.IconUtil;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -45,6 +46,7 @@ public class CraftCraft {
         GuiHandler.init();
         TileEntitiesCC.init();
         NetworkHandler.init();
+        IconUtil.init();
     }
 
     @Mod.EventHandler

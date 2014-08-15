@@ -1,6 +1,7 @@
 package com.xaw4.craftcraft.handler;
 
 import com.xaw4.craftcraft.constants.ModProperties;
+import com.xaw4.craftcraft.messages.MessageCraftConfig;
 import com.xaw4.craftcraft.messages.MessageSlotAssignment;
 
 import cpw.mods.fml.common.network.NetworkRegistry;
@@ -17,6 +18,8 @@ public class NetworkHandler
 		int cnt = 0;
 		INSTANCE.registerMessage(MessageSlotAssignment.class,
 				MessageSlotAssignment.class, cnt++, Side.SERVER);
+		INSTANCE.registerMessage(MessageCraftConfig.class,
+				MessageCraftConfig.class, cnt++, Side.SERVER);
 	}
 
 	public static SimpleNetworkWrapper getInstance()

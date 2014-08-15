@@ -17,8 +17,9 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class ContainerSlotCrafter extends AbstractSlotContainer
+public class ContainerSlotCrafter extends AbstractSlotContainer<TileEntitySlotCrafter>
 {
+	
 	protected final Point craftingGrid;
 
 	public ContainerSlotCrafter(InventoryPlayer inventoryPlayer,
@@ -40,7 +41,7 @@ public class ContainerSlotCrafter extends AbstractSlotContainer
 		return new Point(8, 142 + 24);
 	}
 
-	protected Point getCraftingGridPosition()
+	public Point getCraftingGridPosition()
 	{
 		if (craftingGrid == null)
 		{

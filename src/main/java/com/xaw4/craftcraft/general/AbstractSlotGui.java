@@ -18,11 +18,11 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 
-public abstract class AbstractSlotGui extends GuiContainer {
+public abstract class AbstractSlotGui<TE extends AbstractSlotTileEntity> extends GuiContainer {
 	
 	protected final ResourceLocation texture;
 	
-	protected AbstractSlotTileEntity te;
+	protected TE te;
 
 	private GuiButton botButton;
 	private GuiButton topButton;
@@ -38,7 +38,7 @@ public abstract class AbstractSlotGui extends GuiContainer {
 	private static final int buttonSpacingBack = 2;
 	
 	
-	public AbstractSlotGui(AbstractSlotTileEntity te, 
+	public AbstractSlotGui(TE te, 
 			AbstractSlotContainer container) {
 		super(container);
 		
